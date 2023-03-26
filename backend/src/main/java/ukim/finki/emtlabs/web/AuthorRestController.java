@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import ukim.finki.emtlabs.model.Author;
 import ukim.finki.emtlabs.model.dto.AuthorDto;
 import ukim.finki.emtlabs.service.AuthorService;
+
 import java.util.List;
 
 @RestController
@@ -48,7 +49,7 @@ public class AuthorRestController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity delete(@PathVariable Long id) {
         this.authorService.deleteById(id);
-        if(this.authorService.findById(id).isPresent())
+        if (this.authorService.findById(id).isPresent())
             return ResponseEntity.badRequest().build();
         return ResponseEntity.ok().build();
     }

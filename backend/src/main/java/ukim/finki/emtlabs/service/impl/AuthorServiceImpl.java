@@ -10,6 +10,7 @@ import ukim.finki.emtlabs.model.exceptions.InvalidArgumentsException;
 import ukim.finki.emtlabs.repository.AuthorRepository;
 import ukim.finki.emtlabs.service.AuthorService;
 import ukim.finki.emtlabs.service.CountryService;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -31,7 +32,7 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public Optional<Author> save(AuthorDto authorDto) {
-        if(authorDto.getName() == null || authorDto.getName().isEmpty() || authorDto.getSurname() == null || authorDto.getSurname().isEmpty())
+        if (authorDto.getName() == null || authorDto.getName().isEmpty() || authorDto.getSurname() == null || authorDto.getSurname().isEmpty())
             throw new InvalidArgumentsException();
         Country country = this.countryService.findById(authorDto.getCountryId()).orElseThrow(() -> new CountryNotFoundException(authorDto.getCountryId()));
         Author author = new Author(authorDto.getName(), authorDto.getSurname(), country);

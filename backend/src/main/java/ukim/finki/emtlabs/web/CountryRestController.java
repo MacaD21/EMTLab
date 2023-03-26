@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import ukim.finki.emtlabs.model.Country;
 import ukim.finki.emtlabs.model.dto.CountryDto;
 import ukim.finki.emtlabs.service.CountryService;
+
 import java.util.List;
 
 @RestController
@@ -48,7 +49,7 @@ public class CountryRestController {
     @DeleteMapping(value = {"/delete/{id}"})
     public ResponseEntity delete(@PathVariable Long id) {
         this.countryService.deleteById(id);
-        if(this.countryService.findById(id).isPresent())
+        if (this.countryService.findById(id).isPresent())
             return ResponseEntity.badRequest().build();
         return ResponseEntity.ok().build();
     }

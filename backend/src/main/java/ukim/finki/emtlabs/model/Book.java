@@ -2,6 +2,7 @@ package ukim.finki.emtlabs.model;
 
 import lombok.Data;
 import ukim.finki.emtlabs.model.enumerations.Category;
+
 import javax.persistence.*;
 
 @Data

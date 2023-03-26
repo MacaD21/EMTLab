@@ -7,9 +7,11 @@ import ukim.finki.emtlabs.model.dto.BookDto;
 import ukim.finki.emtlabs.model.exceptions.AuthorNotFoundException;
 import ukim.finki.emtlabs.model.exceptions.BookNotFoundException;
 import ukim.finki.emtlabs.model.exceptions.InvalidArgumentsException;
+import ukim.finki.emtlabs.model.exceptions.NoMoreAvailableBookCopiesException;
 import ukim.finki.emtlabs.repository.BookRepository;
 import ukim.finki.emtlabs.service.AuthorService;
 import ukim.finki.emtlabs.service.BookService;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -36,7 +38,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Optional<Book> save(BookDto bookDto) {
-        if(bookDto.getName()==null || bookDto.getName().isEmpty())
+        if (bookDto.getName() == null || bookDto.getName().isEmpty())
             throw new InvalidArgumentsException();
         Author author = this.authorService.findById(bookDto.getAuthorId()).orElseThrow(() -> new AuthorNotFoundException(bookDto.getAuthorId()));
         Book book = new Book(bookDto.getName(), bookDto.getCategory(), author, bookDto.getAvailableCopies());
@@ -64,10 +66,10 @@ public class BookServiceImpl implements BookService {
     @Override
     public Optional<Book> markAsTaken(Long id) {
         Book book = this.findById(id).orElseThrow(() -> new BookNotFoundException(id));
-        if(book.getAvailableCopies() > 0) {
+        if (book.getAvailableCopies() > 0) {
             book.setAvailableCopies(book.getAvailableCopies() - 1);
             return Optional.of(this.bookRepository.save(book));
         }
-        return Optional.of(book);
+        throw new NoMoreAvailableBookCopiesException(id);
     }
 }

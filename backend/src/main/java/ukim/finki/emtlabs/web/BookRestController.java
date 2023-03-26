@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import ukim.finki.emtlabs.model.Book;
 import ukim.finki.emtlabs.model.dto.BookDto;
 import ukim.finki.emtlabs.service.BookService;
+
 import java.util.List;
 
 @RestController
@@ -47,7 +48,7 @@ public class BookRestController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity delete(@PathVariable Long id) {
         this.bookService.deleteById(id);
-        if(this.bookService.findById(id).isPresent())
+        if (this.bookService.findById(id).isPresent())
             return ResponseEntity.badRequest().build();
         return ResponseEntity.ok().build();
     }

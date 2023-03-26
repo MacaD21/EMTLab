@@ -1,6 +1,7 @@
 package ukim.finki.emtlabs.model;
 
 import lombok.Data;
+
 import javax.persistence.*;
 
 @Data

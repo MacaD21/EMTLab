@@ -7,6 +7,7 @@ import ukim.finki.emtlabs.model.exceptions.CountryNotFoundException;
 import ukim.finki.emtlabs.model.exceptions.InvalidArgumentsException;
 import ukim.finki.emtlabs.repository.CountryRepository;
 import ukim.finki.emtlabs.service.CountryService;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +27,7 @@ public class CountryServiceImpl implements CountryService {
 
     @Override
     public Optional<Country> save(CountryDto countryDto) {
-        if(countryDto.getName() == null || countryDto.getContinent() == null || countryDto.getName().isEmpty() || countryDto.getContinent().isEmpty())
+        if (countryDto.getName() == null || countryDto.getContinent() == null || countryDto.getName().isEmpty() || countryDto.getContinent().isEmpty())
             throw new InvalidArgumentsException();
         Country country = new Country(countryDto.getName(), countryDto.getContinent());
         return Optional.of(this.countryRepository.save(country));
