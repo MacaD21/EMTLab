@@ -9,7 +9,7 @@ import ukim.finki.emtlabs.service.AuthorService;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:9191")
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/authors")
 public class AuthorRestController {
 

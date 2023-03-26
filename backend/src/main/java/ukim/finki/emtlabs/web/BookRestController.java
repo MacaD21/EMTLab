@@ -9,7 +9,7 @@ import ukim.finki.emtlabs.service.BookService;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:9191")
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(value = {"/api/books"})
 public class BookRestController {
 
@@ -38,7 +38,7 @@ public class BookRestController {
                 .orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
-    @PostMapping("/edit/{id}")
+    @PutMapping("/edit/{id}")
     public ResponseEntity<Book> update(@PathVariable Long id, @RequestBody BookDto bookDto) {
         return this.bookService.update(id, bookDto)
                 .map(book -> ResponseEntity.ok().body(book))
@@ -53,7 +53,7 @@ public class BookRestController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/markAsTaken/{id}")
+    @PutMapping("/markAsTaken/{id}")
     public ResponseEntity<Book> markAsTaken(@PathVariable Long id) {
         return this.bookService.markAsTaken(id)
                 .map(book -> ResponseEntity.ok().body(book))

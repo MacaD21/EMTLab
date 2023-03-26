@@ -9,7 +9,7 @@ import ukim.finki.emtlabs.service.CountryService;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:9191")
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(value = {"/api/countries"})
 public class CountryRestController {
 
