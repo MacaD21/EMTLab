@@ -5,12 +5,10 @@ import ukim.finki.emtlabs.model.enumerations.Category;
 
 @Data
 public class BookDto {
+
     private String name;
-
     private Category category;
-
     private Long authorId;
-
     private Integer availableCopies;
 
     public BookDto() {

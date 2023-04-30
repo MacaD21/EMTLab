@@ -10,7 +10,7 @@ class Books extends Component {
 
         this.state = {
             page: 0,
-            size: 5
+            size: 3
         }
     }
 

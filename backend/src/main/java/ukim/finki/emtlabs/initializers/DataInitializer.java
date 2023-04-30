@@ -17,9 +17,7 @@ import java.util.List;
 public class DataInitializer {
 
     private final BookService bookService;
-
     private final AuthorService authorService;
-
     private final CountryService countryService;
 
     public DataInitializer(BookService bookService, AuthorService authorService, CountryService countryService) {
@@ -31,20 +29,20 @@ public class DataInitializer {
     @PostConstruct
     public void initData()
     {
+        this.countryService.save(new CountryDto("USA", "North America"));
         this.countryService.save(new CountryDto("Macedonia", "Europe"));
-        this.countryService.save(new CountryDto("Croatia", "Europe"));
-        this.countryService.save(new CountryDto("Canada", "North America"));
+        this.countryService.save(new CountryDto("Serbia", "Europe"));
 
         List<Country> countryList = this.countryService.findAll();
 
-        this.authorService.save(new AuthorDto("Kristina","Koneva",countryList.get(0).getId()));
-        this.authorService.save(new AuthorDto("Jovan","Jovanovic",countryList.get(1).getId()));
-        this.authorService.save(new AuthorDto("Marko","Markov",countryList.get(2).getId()));
+        this.authorService.save(new AuthorDto("Marija","Dimitrova",countryList.get(0).getId()));
+        this.authorService.save(new AuthorDto("Aleksandar","Mitev",countryList.get(1).getId()));
+        this.authorService.save(new AuthorDto("Tea","Teova",countryList.get(2).getId()));
 
         List<Author> authors = this.authorService.findAll();
 
-        this.bookService.save(new BookDto("On the Edge",Category.THRILLER,authors.get(0).getId(),5));
-        this.bookService.save(new BookDto("One more chance",Category.DRAMA,authors.get(1).getId(),4));
-        this.bookService.save(new BookDto("The Flying Cows",Category.FANTASY,authors.get(2).getId(),2));
+        this.bookService.save(new BookDto("The Fifth Season",Category.FANTASY,authors.get(0).getId(),5));
+        this.bookService.save(new BookDto("The Silent Patient",Category.THRILLER,authors.get(1).getId(),4));
+        this.bookService.save(new BookDto("Romeo and Juliet",Category.DRAMA,authors.get(2).getId(),2));
     }
 }

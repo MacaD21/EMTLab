@@ -19,11 +19,8 @@ public class User implements UserDetails {
 
     @Version
     private Long version;
-
     private String password;
-
     private String name;
-
     private String surname;
 
     private boolean isAccountNonExpired = true;

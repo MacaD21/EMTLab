@@ -6,9 +6,7 @@ import lombok.Data;
 public class AuthorDto {
 
     private String name;
-
     private String surname;
-
     private Long countryId;
 
     public AuthorDto() {
